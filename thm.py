@@ -31,15 +31,15 @@ def gobuster_scan():
 	match type_scan_gobuster:
 		case "dir":
 			if extensions == "n":
-				scan_type_gobuster="gobuster dir -u "+ args.ip +" -w " + wordlist_loc
+				scan_type_gobuster="gobuster dir -u "+ args.ip +" -w " + wordlist_loc + " -s '204,301,302,307,401,403' -b ''"
 			elif len(extensions)>2:
-				scan_type_gobuster="gobuster dir -u "+ args.ip +" -w " + wordlist_loc + " -x php,txt," + extensions.strip()
+				scan_type_gobuster="gobuster dir -u "+ args.ip +" -w " + wordlist_loc + " -x php,txt," + extensions.strip() + " -s '204,301,302,307,401,403' -b ''"
 			else:
-				scan_type_gobuster="gobuster dir -u "+ args.ip +" -w " + wordlist_loc + " -x php,txt"
+				scan_type_gobuster="gobuster dir -u "+ args.ip +" -w " + wordlist_loc + " -x php,txt -s '204,301,302,307,401,403' -b ''"
 		case "dns":
-			scan_type_gobuster="gobuster dns -d "+ args.ip + " -w SecLists/Discovery/DNS/subdomains-top1million-20000.txt"
+			scan_type_gobuster="gobuster dns -d "+ args.ip + " -w SecLists/Discovery/DNS/subdomains-top1million-20000.txt -s '204,301,302,307,401,403' -b ''"
 		case "vhost":
-			scan_type_gobuster="gobuster vhost -u " + args.ip + " -w SecLists/Discovery/DNS/subdomains-top1million-20000.txt"
+			scan_type_gobuster="gobuster vhost -u " + args.ip + " -w SecLists/Discovery/DNS/subdomains-top1million-20000.txt -s '204,301,302,307,401,403' -b ''"
 		case _:
 			print("choose appropriate method i.e dir, dns, vhost")	
 	print("\n\n_________________________Gobuster Scan Details_________________________\n\n")
